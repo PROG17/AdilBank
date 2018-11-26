@@ -26,13 +26,6 @@ namespace AdilBank.Repositories
             };
         }
 
-        public void Transfer(double amount, string fromAccount, string targetAccount)
-        {
-            var withdrawalSucceeded = Withdraw(amount, fromAccount);
-
-            if (withdrawalSucceeded) Deposit(amount, targetAccount);
-        }
-
         public bool Withdraw(double amount, string accountName)
         {
             var withdrawalAccount = Accounts.FirstOrDefault(account => account.Name == accountName);
@@ -46,6 +39,16 @@ namespace AdilBank.Repositories
             var depositAccount = Accounts.FirstOrDefault(account => account.Name == accountName);
 
             if (depositAccount != null) depositAccount.Balance += amount;
+        }
+
+        public bool Transfer(double amount, string fromAccount, string targetAccount)
+        {
+            var withdrawalAccount = Accounts.FirstOrDefault(account => account.Name == fromAccount);
+            if (withdrawalAccount == null || withdrawalAccount.Balance < amount) return false;
+
+            var withdrawalSucceeded = Withdraw(amount, fromAccount);
+            if (withdrawalSucceeded) Deposit(amount, targetAccount);
+            return true;
         }
     }
 }
