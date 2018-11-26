@@ -18,7 +18,7 @@ namespace AdilBank.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string transactionType, double accountBalance, double amount, string accountName)
+        public IActionResult Index(string transactionType, double accountBalance, double amount, string accountName, string fromAccount, string targetAccount)
         {
             double sum; 
 
@@ -34,11 +34,18 @@ namespace AdilBank.Controllers
                 ViewBag.Message = $"Det har dragits {amount} från kontot {accountName}, saldo är nu {sum}";
                 return View(_bankRepository);
             }
-
-            _bankRepository.Deposit(amount, accountName);
-            sum = accountBalance + amount;
-            ViewBag.Message = $"Det har lagts till {amount} till kontot {accountName}, saldo är nu {sum}";
-            return View(_bankRepository);
+            else if (transactionType == "Insättning")
+            {
+                _bankRepository.Deposit(amount, accountName);
+                sum = accountBalance + amount;
+                ViewBag.Message = $"Det har lagts till {amount} till kontot {accountName}, saldo är nu {sum}";
+                return View(_bankRepository);
+            }
+            else
+            {
+                ViewBag.Message = "Något gick snett";
+                return View();
+            }
         }
     }
 }
