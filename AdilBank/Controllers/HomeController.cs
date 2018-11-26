@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using AdilBank.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using AdilBank.Models;
+﻿using AdilBank.Models;
 using AdilBank.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace AdilBank.Controllers
 {
     public class HomeController : Controller
     {
-        private IBankRepository _bankRepository;
+        private readonly BankRepository _bankRepository;
+
+        public HomeController(BankRepository bankRepository)
+        {
+            _bankRepository = bankRepository;
+        }
 
         public IActionResult Index()
         {
-            _bankRepository = new BankRepository();
             return View(_bankRepository);
         }  
 
