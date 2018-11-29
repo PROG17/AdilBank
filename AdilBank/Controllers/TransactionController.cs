@@ -43,7 +43,7 @@ namespace AdilBank.Controllers
             }
             else
             {
-                ViewBag.Message = "Något gick dåligt";
+                ViewBag.Message = "Något gick snett";
                 return View();
             }
         }
