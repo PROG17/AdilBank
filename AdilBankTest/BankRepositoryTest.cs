@@ -10,14 +10,14 @@ namespace AdilBankTest
         public void Withdraw_method_should_withdraw_given_amount_from_account_balance()
         {
             var bankRepository = new BankRepository();
-            var newCustomer = new Customer { Name = "Customer", Id = 11 };
-            var newAccount = new Account { Name = "Account", Customer = newCustomer, Balance = 1000 };
+            var newCustomer = new Customer {Name = "Customer", Id = 11};
+            var newAccount = new Account {Name = "Account", Customer = newCustomer, Balance = 1000};
 
             bankRepository.Accounts.Add(newAccount);
 
             var withdrawalSucceeded = bankRepository.Withdraw(200, newAccount.Name);
 
-            Assert.True(withdrawalSucceeded);       
+            Assert.True(withdrawalSucceeded);
             Assert.Equal(800, newAccount.Balance);
         }
 
@@ -25,8 +25,8 @@ namespace AdilBankTest
         public void Withdraw_method_should_not_withdraw_if_withdrawal_amount_is_more_than_balance()
         {
             var bankRepository = new BankRepository();
-            var newCustomer = new Customer { Name = "Customer", Id = 11 };
-            var newAccount = new Account { Name = "Account", Customer = newCustomer, Balance = 1000 };
+            var newCustomer = new Customer {Name = "Customer", Id = 11};
+            var newAccount = new Account {Name = "Account", Customer = newCustomer, Balance = 1000};
 
             bankRepository.Accounts.Add(newAccount);
 
@@ -40,8 +40,8 @@ namespace AdilBankTest
         public void Deposit_method_should_deposit_given_amount_to_account_balance()
         {
             var bankRepository = new BankRepository();
-            var newCustomer = new Customer { Name = "Customer", Id = 11 };
-            var newAccount = new Account { Name = "Account", Customer = newCustomer, Balance = 1000 };
+            var newCustomer = new Customer {Name = "Customer", Id = 11};
+            var newAccount = new Account {Name = "Account", Customer = newCustomer, Balance = 1000};
 
             bankRepository.Accounts.Add(newAccount);
 
@@ -54,10 +54,10 @@ namespace AdilBankTest
         public void Transfer()
         {
             var bankRepository = new BankRepository();
-            var cutomer1 = new Customer { Name = "Adil", Id = 11 };
-            var account1 = new Account { Name = "Account1", Customer = cutomer1, Balance = 1000 };
-            var cutomer2 = new Customer { Name = "Ahmad", Id = 14 };
-            var account2 = new Account { Name = "Account2", Customer = cutomer1, Balance = 100 };
+            var cutomer1 = new Customer {Name = "Adil", Id = 11};
+            var account1 = new Account {Name = "Account1", Customer = cutomer1, Balance = 1000};
+            var cutomer2 = new Customer {Name = "Ahmad", Id = 14};
+            var account2 = new Account {Name = "Account2", Customer = cutomer1, Balance = 100};
 
             bankRepository.Accounts.Add(account1);
             bankRepository.Accounts.Add(account2);
@@ -72,10 +72,10 @@ namespace AdilBankTest
         public void Transfer_fail()
         {
             var bankRepository = new BankRepository();
-            var cutomer1 = new Customer { Name = "Adil", Id = 11 };
-            var account1 = new Account { Name = "Account1", Customer = cutomer1, Balance = 1000 };
-            var cutomer2 = new Customer { Name = "Ahmad", Id = 14 };
-            var account2 = new Account { Name = "Account2", Customer = cutomer1, Balance = 100 };
+            var cutomer1 = new Customer {Name = "Adil", Id = 11};
+            var account1 = new Account {Name = "Account1", Customer = cutomer1, Balance = 1000};
+            var cutomer2 = new Customer {Name = "Ahmad", Id = 14};
+            var account2 = new Account {Name = "Account2", Customer = cutomer1, Balance = 100};
 
             bankRepository.Accounts.Add(account1);
             bankRepository.Accounts.Add(account2);
